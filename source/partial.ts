@@ -7,7 +7,7 @@ interface Func {
 
 function partial(func: Func, ...partials: any[]): Func {
   const placeholder = partial.placeholder;
-  const boundFunc = function(this: any, ...args: any[]): any {
+  function boundFunc(this: any, ...args: any[]): any {
     const finalArgs = _replacePlaceholders(partials, args, placeholder);
     return _executeBound(func, boundFunc, this, this, finalArgs);
   }
