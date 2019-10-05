@@ -2,7 +2,7 @@ import _baseGetTag, { _TYPE_TAG } from './_baseGetTag';
 
 interface Func {
   (...args: any[]): any;
-};
+}
 
 function isFunction(value: any): value is Func {
   const tag = _baseGetTag(value);

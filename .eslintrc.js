@@ -20,6 +20,7 @@ module.exports = {
       "@typescript-eslint"
   ],
   "rules": {
-    
+    "no-trailing-spaces": ["warn"],
+    "no-unused-vars": ["off", { "ignore-pattern": "^_" }]
   }
 };

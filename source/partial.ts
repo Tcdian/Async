@@ -3,7 +3,7 @@ import _executeBound from './_executeBound';
 
 interface Func {
   (...args: any[]): any;
-};
+}
 
 function partial(func: Func, ...partials: any[]): Func {
   const placeholder = partial.placeholder;

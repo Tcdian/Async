@@ -2,10 +2,10 @@ import isObject from './isObject';
 
 interface Func {
   (...args: any[]): any;
-};
+}
 
 function _executeBound(sourceFunc: Func, boundFunc: Func, context: any, callingContext: any, args: any[]) {
-  if (!boundFunc.prototype.isPrototypeOf(callingContext)) {
+  if (!Object.prototype.isPrototypeOf.call(boundFunc, callingContext)) {
     return sourceFunc.call(context, ...args);
   }
   const instance = Object.create(sourceFunc.prototype);

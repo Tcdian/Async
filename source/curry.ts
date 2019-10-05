@@ -2,7 +2,7 @@ import _curry from './_curry';
 
 interface Func {
   (...args: any[]): any;
-};
+}
 
 function curry(func: Func, arity = func.length): any {
   const placeholder = curry.placeholder;

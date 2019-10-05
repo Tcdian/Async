@@ -1,6 +1,6 @@
 interface Func {
   (...args: any[]): any;
-};
+}
 
 function pipe(...funcs: Func[]): Func {
   const firstFunc = funcs[0];

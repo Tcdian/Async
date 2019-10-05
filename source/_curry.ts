@@ -3,7 +3,7 @@ import _executeBound from './_executeBound';
 
 interface Func {
   (...args: any[]): any;
-};
+}
 
 function _curry(func: Func, arity: number, partials: any[], placeholder: any): any {
   function boundFunc(this: any, ...args: any[]): any {
