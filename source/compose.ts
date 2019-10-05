@@ -6,8 +6,8 @@ interface Func {
 };
 
 function compose(...funcs: Func[]): Func {
-  const reverseFuncs = reverse(funcs);
-  return pipe(...reverseFuncs);
+  const reversedFuncs = reverse(funcs);
+  return pipe(...reversedFuncs);
 }
 
 export default compose;

@@ -1,5 +1,5 @@
 interface BooleanFunc {
-  (...args: any[]): any;
+  (...args: any[]): boolean;
 };
 
 function negate(func: BooleanFunc): BooleanFunc {
