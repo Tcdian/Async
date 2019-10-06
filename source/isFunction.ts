@@ -6,7 +6,7 @@ interface Func {
 
 function isFunction(value: any): value is Func {
   const tag = _baseGetTag(value);
-  return tag === _TYPE_TAG.functionTag 
+  return tag === _TYPE_TAG.functionTag
     || tag === _TYPE_TAG.asyncFunctionTag
     || tag === _TYPE_TAG.generatorFunctionTag
     || tag === _TYPE_TAG.proxyTagTag;
