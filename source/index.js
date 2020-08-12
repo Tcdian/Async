@@ -1,6 +1,9 @@
 function async(taskDef) {
+    if (!isGeneratorFunction(taskDef)) {
+        throw new TypeError('Expected a generator function');
+    }
     return function (...args) {
-        const task = taskDef.call(...args);
+        const task = taskDef.call(this, ...args);
         return Promise.resolve().then(function handleNext(value) {
             const next = task.next(value);
             return (function handleResult(next) {
@@ -15,6 +18,10 @@ function async(taskDef) {
             })(next);
         });
     };
+}
+
+function isGeneratorFunction(value) {
+    return Object.prototype.toString.call(value) === '[object GeneratorFunction]';
 }
 
 module.exports = async;

@@ -1,28 +1,29 @@
 {
-  "name": "async",
-  "version": "1.0.0",
-  "description": "",
-  "main": "source/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Tcdian/Async.git"
-  },
-  "keywords": [
-    "Async"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Tcdian/Async/issues"
-  },
-  "homepage": "https://github.com/Tcdian/Async#readme",
-  "devDependencies": {
-    "prettier": "2.0.5"
-  }
+    "name": "async",
+    "version": "1.0.0",
+    "description": "",
+    "main": "source/index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Tcdian/Async.git"
+    },
+    "keywords": [
+        "Async"
+    ],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Tcdian/Async/issues"
+    },
+    "homepage": "https://github.com/Tcdian/Async#readme",
+    "devDependencies": {
+        "jest": "^26.3.0",
+        "prettier": "2.0.5"
+    }
 }
