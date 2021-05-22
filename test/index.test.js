@@ -1,47 +1,47 @@
-const async = require('../source');
+const asy = require('../source');
 
-function getPromise(val, err) {
-    return new Promise(function (resolve, reject) {
-        if (err) reject(err);
-        else resolve(val);
-    });
-}
-
-describe('with one promise yield', function () {
-    test('should work', function () {
-        return async(function* (num) {
-            var a = yield getPromise(num);
-            expect(a).toBe(1);
-        })(1);
+describe('with one promise yield', () => {
+    test('should work', async () => {
+        expect.assertions(1);
+        let asyTask = asy(function* (value) {
+            return yield Promise.resolve(value);
+        });
+        await expect(asyTask('success')).resolves.toBe('success');
     });
 });
 
-describe('with several promise yields', function () {
-    test('should work', function () {
-        return async(function* () {
-            var a = yield getPromise(1);
-            var b = yield getPromise(2);
-            var c = yield getPromise(3);
+describe('with several promise yields', () => {
+    test('should work', async () => {
+        expect.assertions(1);
+        let asyTask = asy(function* () {
+            var a = yield Promise.resolve(1);
+            var b = yield Promise.resolve(2);
+            var c = yield Promise.resolve(3);
 
-            expect([a, b, c]).toEqual([1, 2, 3]);
-        })();
+            return [a, b, c];
+        });
+        await expect(asyTask()).resolves.toEqual([1, 2, 3]);
     });
 });
 
-describe('when a promise is rejected', function () {
-    test('should throw and resume', function () {
-        let error;
-
-        return async(function* () {
+describe('when a promise is rejected', () => {
+    test('should throw', async () => {
+        expect.assertions(1);
+        let asyTask = asy(function* () {
+            return yield Promise.reject(new Error('fail!!!'));
+        });
+        await expect(asyTask()).rejects.toEqual(new Error('fail!!!'));
+    });
+    test('should resume', async () => {
+        expect.assertions(1);
+        let asyTask = asy(function* () {
             try {
-                yield getPromise(1, new Error('boom'));
+                return yield Promise.reject(new Error('fail!!!'));
             } catch (err) {
-                error = err;
+                // handle error ...
+                return yield Promise.resolve('error handled');
             }
-
-            expect(error.message).toBe('boom');
-            const ret = yield getPromise(1);
-            expect(ret).toBe(1);
-        })();
+        });
+        await expect(asyTask()).resolves.toEqual('error handled');
     });
 });

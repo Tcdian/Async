@@ -3,15 +3,15 @@
 ### 使用 Generator 和 Promise 模拟 async/await
 
 ```javascript
-function async(taskDef) {
+function asy(taskDef) {
     if (!isGeneratorFunction(taskDef)) {
         throw new TypeError('Expected a generator function');
     }
     return function (...args) {
-        const task = taskDef.call(this, ...args);
+        let task = taskDef(...args);
         return Promise.resolve().then(function handleNext(value) {
-            const next = task.next(value);
-            return (function handleResult(next) {
+            let next = task.next(value);
+            function handleResult(next) {
                 if (next.done) {
                     return next.value;
                 }
@@ -20,7 +20,8 @@ function async(taskDef) {
                     .catch((error) => {
                         return Promise.resolve(task.throw(error)).then(handleResult);
                     });
-            })(next);
+            }
+            return handleResult(next);
         });
     };
 }
@@ -33,7 +34,7 @@ function isGeneratorFunction(value) {
 #### 使用方法
 
 ```javascript
-const resolveAfter2Seconds = function () {
+let resolveAfter2Seconds = function () {
     console.log('starting slow promise');
     return new Promise((resolve) => {
         setTimeout(function () {
@@ -43,7 +44,7 @@ const resolveAfter2Seconds = function () {
     });
 };
 
-const resolveAfter1Second = function () {
+let resolveAfter1Second = function () {
     console.log('starting fast promise');
     return new Promise((resolve) => {
         setTimeout(function () {
@@ -53,7 +54,7 @@ const resolveAfter1Second = function () {
     });
 };
 
-const sequentialStart = async(function* () {
+let sequentialStart = asy(function* () {
     console.log('==SEQUENTIAL START==');
 
     // 1. Execution gets here almost instantly
@@ -66,10 +67,10 @@ const sequentialStart = async(function* () {
 
 sequentialStart();
 
-const concurrentStart = async(function* () {
-    console.log('==CONCURRENT START with await==');
-    const slow = resolveAfter2Seconds(); // starts timer immediately
-    const fast = resolveAfter1Second(); // starts timer immediately
+let concurrentStart = asy(function* () {
+    console.log('==CONCURRENT START==');
+    let slow = resolveAfter2Seconds(); // starts timer immediately
+    let fast = resolveAfter1Second(); // starts timer immediately
 
     // 1. Execution gets here almost instantly
     console.log(yield slow); // 2. this runs 2 seconds after 1.
