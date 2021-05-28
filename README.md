@@ -34,7 +34,7 @@ function isGeneratorFunction(value) {
 #### 使用方法
 
 ```javascript
-let sequentialStart = asy(function* () {
+const sequentialStart = asy(function* () {
     console.log('==SEQUENTIAL START==');
 
     // 1. Execution gets here almost instantly
@@ -47,10 +47,10 @@ let sequentialStart = asy(function* () {
 
 // sequentialStart();
 
-let concurrentStart = asy(function* () {
+const concurrentStart = asy(function* () {
     console.log('==CONCURRENT START==');
-    let slow = resolveAfter2Seconds(); // starts timer immediately
-    let fast = resolveAfter1Second(); // starts timer immediately
+    const slow = resolveAfter2Seconds(); // starts timer immediately
+    const fast = resolveAfter1Second(); // starts timer immediately
 
     // 1. Execution gets here almost instantly
     console.log(yield slow); // 2. this runs 2 seconds after 1.
