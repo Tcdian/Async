@@ -19,11 +19,12 @@
         "url": "https://github.com/Tcdian/Async/issues"
     },
     "homepage": "https://github.com/Tcdian/Async#readme",
-    "devDependencies": {
-        "eslint": "^7.27.0",
+    "devDependencies": {},
+    "dependencies": {
+        "eslint": "^8.3.0",
         "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-jest": "^24.3.6",
-        "jest": "^26.6.3",
-        "prettier": "^2.0.5"
+        "eslint-plugin-jest": "^25.3.0",
+        "jest": "^27.3.1",
+        "prettier": "^2.5.0"
     }
 }
