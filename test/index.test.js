@@ -38,8 +38,7 @@ describe('when a promise is rejected', () => {
             try {
                 return yield Promise.reject(new Error('fail!!!'));
             } catch (err) {
-                // handle error ...
-                return yield Promise.resolve('error handled');
+                return yield Promise.resolve('error handled'); // handle error
             }
         });
         await expect(asyTask()).resolves.toEqual('error handled');
