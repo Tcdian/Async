@@ -3,9 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "source/index.js",
-    "scripts": {
-        "test": "jest"
-    },
+    "scripts": {},
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Tcdian/Async.git"
@@ -26,6 +24,7 @@
         "eslint-plugin-jest": "^25.3.0",
         "eslint-plugin-prettier": "^4.0.0",
         "jest": "^27.4.0",
-        "prettier": "^2.5.0"
+        "prettier": "^2.5.0",
+        "prettier-eslint": "^13.0.0"
     }
 }
